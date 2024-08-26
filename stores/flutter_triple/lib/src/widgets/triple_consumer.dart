@@ -91,6 +91,8 @@ class _TripleConsumerState<TStore extends BaseStore<TState>, TError extends Obje
     disposer?.call();
     super.didChangeDependencies();
 
+    store = widget.store ?? getTripleResolver<TStore>();
+
     disposer = store.observer(
       onState: _listener,
       onError: _listener,
